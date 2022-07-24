@@ -162,3 +162,12 @@ h1 {
 		transform: translateY(0);
 	}
 }
+
+#loadingSpinner {
+	z-index: 3;
+	width: 400px;
+	height: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

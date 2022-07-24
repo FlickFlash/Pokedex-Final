@@ -22,9 +22,17 @@ const insertPokemonsIntoPage = pokemons => {
     ul.innerHTML = pokemons
 }
 
+const spinner = document.getElementById("loadingSpinner")
+const removeSpinner = () => setTimeout(() => {
+    spinner.remove()
+}, 0);
+
 const pokemonPromises = generatePokemonPromises()
+
+
 
 
 Promise.all(pokemonPromises)
     .then(generateHTML)
     .then(insertPokemonsIntoPage)
+    .then(removeSpinner)
