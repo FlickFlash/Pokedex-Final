@@ -6,14 +6,23 @@ const generatePokemonPromises = () => Array(905).fill().map((_, index) =>
     
 const generateHTML = pokemons => pokemons.reduce((accumulator, { types, id, species }) => {
         const elementTypes = types.map(typeInfo => typeInfo.type.name)
-
-        accumulator += `
-        <li class="card ${elementTypes[0]}">
-        <img class="card-image" alt="${species.name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png" />
-            <h2 class="card-title">${id}. ${species.name}
-            <p class="card-subtitle">${elementTypes.join(' | ')}</p>
-        </li>`
-        return accumulator
+        if (id <= 898) {
+            accumulator += `
+            <li class="card ${elementTypes[0]}">
+            <img class="card-image" alt="${species.name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png" />
+                <h2 class="card-title">${id}. ${species.name}
+                <p class="card-subtitle">${elementTypes.join(' | ')}</p>
+            </li>`
+            return accumulator
+        } else {
+            accumulator += `
+            <li class="card ${elementTypes[0]}">
+            <img class="card-image" alt="${species.name}" src="./img/imgpokemon${id}.png" />
+                <h2 class="card-title">${id}. ${species.name}
+                <p class="card-subtitle">${elementTypes.join(' | ')}</p>
+            </li>`
+            return accumulator
+        }
     }, '')
 
 

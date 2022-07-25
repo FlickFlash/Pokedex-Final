@@ -118,7 +118,9 @@ h1 {
 }
 
 .card:hover {
-	animation: bounce 0.5s linear;
+	animation: bounce 1s linear;
+	animation-iteration-count:infinite;
+	cursor: pointer;
 }
 
 .card-title {
