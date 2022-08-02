@@ -16,6 +16,16 @@ h1 {
 	font-size: 54px;
 }
 
+#searchBlock {
+	text-align: center;
+}
+
+#searchPokemon {
+	width: 200px;
+	margin-right: 5px;
+	margin-bottom: 20px;
+}
+
 .pokedex {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -119,7 +129,7 @@ h1 {
 
 .card:hover {
 	animation: bounce 1s linear;
-	animation-iteration-count:infinite;
+	animation-iteration-count: infinite;
 	cursor: pointer;
 }
 
