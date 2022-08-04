@@ -3,7 +3,8 @@ const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}`
 const generatePokemonPromises = () => Array(905).fill().map((_, index) =>
     fetch(getPokemonUrl(index + 1)).then(response => response.json()))
 
-    
+
+const pokemonsIdList = []
 const generateHTML = pokemons => pokemons.reduce((accumulator, { types, id, species }) => {
         const elementTypes = types.map(typeInfo => typeInfo.type.name)
         if (id <= 898) {
@@ -13,6 +14,7 @@ const generateHTML = pokemons => pokemons.reduce((accumulator, { types, id, spec
                 <h2 class="card-title">${id}. ${species.name}
                 <p class="card-subtitle">${elementTypes.join(' | ')}</p>
             </li>`
+            pokemonsIdList.push(species.name)
             return accumulator
         } else {
             accumulator += `
@@ -21,6 +23,7 @@ const generateHTML = pokemons => pokemons.reduce((accumulator, { types, id, spec
                 <h2 class="card-title">${id}. ${species.name}
                 <p class="card-subtitle">${elementTypes.join(' | ')}</p>
             </li>`
+            pokemonsIdList.push(species.name)
             return accumulator
         }
     }, '')
@@ -55,11 +58,27 @@ function appendSearch() {
 
 const pokemonPromises = generatePokemonPromises()
 
-function scrollToPokemon(id) {
+function scrollToPokemon() {
     // alert("clicou")
     // console.log("clicou")
-    searchingPokemonsInput = searchingPokemonsInput.value.toLowerCase()
-    location.href = "#pokemon" + searchingPokemonsInput
+    const searchedPokemon = searchingPokemonsInput.value.toLowerCase()
+    function numberOrName() {
+        const numberCondition = (searchedPokemon >= 1 && searchedPokemon <= 904)
+        const nameCondition = (pokemonsIdList.includes(searchedPokemon))
+        if (numberCondition || nameCondition) {
+            if (numberCondition) {
+                location.href = "#pokemon" + searchedPokemon
+                // alert("Pokemon >número< OK")
+            } else {
+                location.href = "#pokemon" + (pokemonsIdList.indexOf(searchedPokemon) + 1)
+                // alert("Pokemon >nome< OK")
+            }
+        } else {
+            alert('Pokémon não encontrado! 😪')
+
+        }
+    }
+    numberOrName()
 }
 
 Promise.all(pokemonPromises)
