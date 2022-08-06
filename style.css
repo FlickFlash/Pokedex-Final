@@ -6,6 +6,10 @@ body {
 	font-family: rubik;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 .container {
 	padding: 40px;
 	margin: 0 auto;
@@ -53,6 +57,12 @@ h1 {
 	position: absolute;
 	top: 15%;
 	left: 25%;
+}
+
+.card-flash {
+	background-color: cadetblue;
+	animation: cardColors 2s, bounce 2s linear;
+	animation-iteration-count: 5;
 }
 
 .steel {
@@ -128,9 +138,11 @@ h1 {
 }
 
 .card:hover {
-	animation: bounce 1s linear;
+	animation: cardColors 2s, bounce 1s linear;
 	animation-iteration-count: infinite;
 	cursor: pointer;
+	border: solid 5px rgba(0, 0, 0, 0.76);
+	margin: -5px;
 }
 
 .card-title {
@@ -158,20 +170,38 @@ h1 {
 }
 
 @keyframes bounce {
-	20% {
+	25% {
 		transform: translateY(-6px);
 	}
 
-	40% {
+	50% {
 		transform: translateY(0px);
 	}
 
-	80% {
+	75% {
 		transform: translateY(-2px);
 	}
 
 	100% {
 		transform: translateY(0);
+	}
+}
+
+@keyframes cardColors {
+	25% {
+		background-color: rgba(255, 0, 0, 0.315);
+	}
+
+	50% {
+		background-color: rgba(137, 43, 226, 0.219);
+	}
+
+	75% {
+		background-color: rgba(255, 20, 145, 0.267);
+	}
+
+	100% {
+		background-color: rgba(255, 140, 0, 0.274);
 	}
 }
 

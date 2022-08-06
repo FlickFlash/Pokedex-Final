@@ -58,6 +58,43 @@ function appendSearch() {
 
 const pokemonPromises = generatePokemonPromises()
 
+let cardToFlash = ''
+// const stopFlashingCard = []
+// const cardStopped = []
+
+function flashCardColor(e) {
+    // console.log(e)
+    // console.log(e.slice(1))
+    if (cardToFlash != '') {
+        cardToFlash.classList.remove("card-flash")
+    }
+    // stopFlashingCard.push(document.getElementsByTagName("li"))
+    // cardStopped = stopFlashingCard[0][0].classList.contains("card-flash")
+
+
+    // cardStopped = stopFlashingCard[0].filter(hasCardClass)
+    // cardStopped.classList.remove("card-flash")   
+
+
+    // cardStopped.classList.remove("card-flash")
+    // console.log(stopFlashingCard.classList)
+    // console.log(stopFlashingCard.classList.remove("card-flash"))
+
+    cardToFlash = document.getElementById(e.slice(1))
+    // window.scrollTo(1000, 12700)
+    // console.log(cardToFlash.classList)
+    cardToFlash.classList.add("card-flash")
+    // console.log(typeof(cardToFlash))
+    // console.log(cardToFlash.classList)
+    setTimeout(() => {
+        // cardToFlash.removeAttribute("class", "card-flash")
+        cardToFlash.classList.remove("card-flash")
+    }, 10000);
+    // // console.log(cardToFlash.classList)
+}
+// console.log(cardStopped)
+// console.log(cardStopped.classList)
+
 function scrollToPokemon() {
     // alert("clicou")
     // console.log("clicou")
@@ -68,9 +105,11 @@ function scrollToPokemon() {
         if (numberCondition || nameCondition) {
             if (numberCondition) {
                 location.href = "#pokemon" + searchedPokemon
+                flashCardColor("#pokemon" + searchedPokemon)                
                 // alert("Pokemon >número< OK")
             } else {
                 location.href = "#pokemon" + (pokemonsIdList.indexOf(searchedPokemon) + 1)
+                flashCardColor("#pokemon" + searchedPokemon)
                 // alert("Pokemon >nome< OK")
             }
         } else {
